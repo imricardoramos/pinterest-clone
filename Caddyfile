@@ -1,0 +1,10 @@
+pinterest-clone.portfolio.ricardoramos.localhost {
+  handle /api/storage/* {
+    reverse_proxy pinterest_backend:8000
+  }
+  handle /api/* {
+    uri strip_prefix /api
+    reverse_proxy pinterest_backend:8000
+  }
+  reverse_proxy pinterest_frontend:3000
+}

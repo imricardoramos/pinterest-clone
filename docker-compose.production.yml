@@ -1,0 +1,26 @@
+version: "3.5"
+services:
+  pinterest_backend:
+    build: ./backend
+    image: pinterest_backend_production
+    env_file: .envs/.production/.django
+    restart: always
+
+  pinterest_frontend:
+    build: ./frontend
+    image: pinterest_frontend_production
+    env_file: .envs/.production/.next
+
+  caddy:
+    image: caddy
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile
+    ports: 
+      - 80:80
+      - 443:443
+      - 2019:2019
+
+  redis:
+    image: redis:alpine
+    expose:
+      - 6379
