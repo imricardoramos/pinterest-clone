@@ -12,7 +12,7 @@ module.exports = {
     return config
   },
   env: {
-    BACKEND_URL: process.env.BACKEND_URL || 'https://pinterest-clone.portfolio.ricardoramos.me/api',
+    BACKEND_URL: process.env.BACKEND_URL || 'https://altpins.portfolio.ricardoramos.me/api',
     // BACKEND_URL_INTERNAL: process.env.BACKEND_URL_INTERNAL || 'http://localhost:8001'
   }
 }

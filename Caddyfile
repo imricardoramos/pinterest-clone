@@ -1,4 +1,4 @@
-pinterest-clone.portfolio.ricardoramos.localhost {
+altpins.portfolio.ricardoramos.localhost {
   handle /api/storage/* {
     reverse_proxy pinterest_backend:8000
   }

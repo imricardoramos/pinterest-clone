@@ -35,7 +35,7 @@ export default function Settings(props){
     <MainLayout>
       <div className="max-w-screen-sm mx-auto">
         <h1 className="text-3xl font-bold">Edit profile</h1>
-        <p>People on pinterest will get to know the info below</p>
+        <p>People on AltPins will get to know the info below</p>
         <form onSubmit={updateProfile}>
           <div className="flex">
             <SecondaryButton className="ml-auto">Done</SecondaryButton>
