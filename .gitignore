@@ -1,8 +1,8 @@
 # ------------- CUSTOM ----------------
 .env
-.envs/
+.envs/.production
 storage/
-# ------------- DJANGO ---------------- 
+# ------------- DJANGO ----------------
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
@@ -119,7 +119,7 @@ media/
 # !**/migrations
 # !**/migrations/__init__.py
 
-# ------------- NODE ---------------- 
+# ------------- NODE ----------------
  # Logs
 logs
 *.log

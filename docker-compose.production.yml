@@ -1,4 +1,3 @@
-version: "3.5"
 services:
   pinterest_backend:
     build: ./backend
@@ -15,7 +14,7 @@ services:
     image: caddy
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-    ports: 
+    ports:
       - 80:80
       - 443:443
       - 2019:2019

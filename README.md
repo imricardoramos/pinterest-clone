@@ -26,4 +26,4 @@ git clone https://github.com/imricardoramos/portfolio.git
 cd pinterest-clone
 docker-compose up
 ```
-Finally open up https://altpins.portfolio.ricardoramos.localhost
+Finally open up https://altpins.ricardoramos.localhost

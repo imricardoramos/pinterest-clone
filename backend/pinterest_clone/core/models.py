@@ -1,8 +1,9 @@
-from django.db.models import Model, ImageField, CharField, TextField, URLField, ForeignKey, ManyToManyField, CASCADE, FileField
+from django.db.models import Model, ImageField, CharField, TextField, URLField, ForeignKey, ManyToManyField, CASCADE, FileField, AutoField
 from pinterest_clone.users.models import User
 from pinterest_clone.utils.mixins import TimeStampMixin
 
 class Pin(TimeStampMixin, Model):
+    id = AutoField(primary_key=True)
     image = ImageField(upload_to='pins')
     title = CharField(max_length=100)
     description = TextField()
@@ -10,6 +11,7 @@ class Pin(TimeStampMixin, Model):
     author = ForeignKey(User, on_delete=CASCADE, blank=True, related_name="pins")
 
 class Board(TimeStampMixin, Model):
+    id = AutoField(primary_key=True)
     name = CharField(max_length=100)
     description = TextField(blank=True, null=True)
     cover = FileField(upload_to='board_covers', blank=True)

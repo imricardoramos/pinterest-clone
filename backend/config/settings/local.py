@@ -11,7 +11,7 @@ SECRET_KEY = env(
     default="7WxbrxWcLsCw3H4hNrgHtFquRCT0LDZo2FiPN6GPRzokU3OMr3MkeEi0EvLTR5HE",
 )
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
-ALLOWED_HOSTS = ["pinterest-clone-backend.herokuapp.com", "altpins.portfolio.ricardoramos.localhost", "localhost", "0.0.0.0", "127.0.0.1"]
+ALLOWED_HOSTS = ["pinterest-clone-backend.herokuapp.com", env("HOST"), "pinterest-backend", "localhost", "0.0.0.0", "127.0.0.1"]
 
 # CACHES
 # ------------------------------------------------------------------------------
@@ -51,7 +51,7 @@ DEBUG_TOOLBAR_CONFIG = {
 # INTERNAL_IPS = ["127.0.0.1", "10.0.2.2"]
 # if env("USE_DOCKER") == "yes":
 #     import socket
-# 
+#
 #     hostname, _, ips = socket.gethostbyname_ex(socket.gethostname())
 #     INTERNAL_IPS += [".".join(ip.split(".")[:-1] + ["1"]) for ip in ips]
 

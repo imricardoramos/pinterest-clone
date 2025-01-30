@@ -1,10 +1,19 @@
-altpins.portfolio.ricardoramos.localhost {
-  handle /api/storage/* {
-    reverse_proxy pinterest_backend:8000
-  }
-  handle /api/* {
-    uri strip_prefix /api
-    reverse_proxy pinterest_backend:8000
-  }
-  reverse_proxy pinterest_frontend:3000
+altpins.ricardoramos.localhost {
+	handle /api/* {
+		uri strip_prefix /api
+		reverse_proxy pinterest-backend:8000 {
+			header_down Location /(.*)/ /api/$1/
+		}
+	}
+	# This is needed since NextJS Image component does the
+	# request from the node backend (inside the container) which
+	# does not know about the original host.
+	# And also Next messed up their middleware for images and
+	# They still don't fix it:
+  # https://github.com/vercel/next.js/pull/68271
+	handle /_next/image/* {
+	 uri * replace altpins.ricardoramos.localhost pinterest-backend:8000
+	 reverse_proxy pinterest-frontend:3000
+	}
+	reverse_proxy pinterest-frontend:3000
 }

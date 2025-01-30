@@ -1,5 +1,5 @@
 from django.contrib.auth.models import AbstractUser
-from django.db.models import CharField, ImageField, ManyToManyField
+from django.db.models import CharField, ImageField, ManyToManyField, AutoField
 from django.urls import reverse
 from django.utils.translation import gettext_lazy as _
 
@@ -8,6 +8,7 @@ class User(AbstractUser):
     """Default user for Pinterest Clone."""
 
     #: First and last name do not cover name patterns around the globe
+    id = AutoField(primary_key=True)
     name = CharField(_("Name of User"), blank=True, max_length=255)
     avatar = ImageField(upload_to='avatars', blank=True)
     followers = ManyToManyField("User", related_name="following")

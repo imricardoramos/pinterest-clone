@@ -1,7 +1,7 @@
 from django.conf import settings
 from django.contrib.auth import get_user_model
-from django.core.files.base import File, ContentFile
-from django.core.management.base import BaseCommand, CommandError
+from django.core.files.base import File
+from django.core.management.base import BaseCommand
 from pinterest_clone.core.models import Pin, Board
 
 User = get_user_model()
@@ -24,23 +24,24 @@ class Command(BaseCommand):
             user.save()
             users.append(user)
 
-        user = User.objects.create(name=f"User No Image", username=f"user_ni", email=f"userni@example.com")
+        user = User.objects.create(name="User No Image", username="user_ni", email="userni@example.com")
         user.set_password("12345")
         user.save()
         users.append(user)
 
         # Boards
         for user in users:
-            print(user)
-            furniture_board = Board.objects.create(name=f"Furniture", description=f"Description", author=user)
-            people_board = Board.objects.create(name=f"People", description=f"Description", author=user)
-            places_board = Board.objects.create(name=f"Places", description=f"Description", author=user)
+            print(f"Seeding for {user}:")
+            furniture_board = Board.objects.create(name="Furniture", description="Description", author=user)
+            people_board = Board.objects.create(name="People", description="Description", author=user)
+            places_board = Board.objects.create(name="Places", description="Description", author=user)
 
             # Pins
             furniture_filenames = settings.ROOT_DIR.glob("seeds/furniture/*")
             people_filenames = settings.ROOT_DIR.glob("seeds/people/*")
             places_filenames = settings.ROOT_DIR.glob("seeds/places/*")
 
+            print("`-- Seeding furniture pins: ", end="")
             for index, furniture_filename in enumerate(furniture_filenames):
                 with open(furniture_filename, "rb") as f:
                     image = File(f, name=f"{furniture_filename.name}")
@@ -51,8 +52,10 @@ class Command(BaseCommand):
                                        author=user)
                     furniture_board.pins.add(pin)
                     furniture_board.save()
-                    print(pin)
+                    print(".", end="")
+            print()
 
+            print("`-- Seeding people pins: ", end="")
             for index, people_filename in enumerate(people_filenames):
                 with open(people_filename, "rb") as f:
                     image = File(f, name=f"{people_filename.name}")
@@ -63,8 +66,10 @@ class Command(BaseCommand):
                                        author=user)
                     people_board.pins.add(pin)
                     people_board.save()
-                    print(pin)
+                    print(".", end="")
+            print()
 
+            print("`-- Seeding places pins: ", end="")
             for index, places_filename in enumerate(places_filenames):
                 with open(places_filename, "rb") as f:
                     image = File(f, name=f"{places_filename.name}")
@@ -75,4 +80,5 @@ class Command(BaseCommand):
                                        author=user)
                     places_board.pins.add(pin)
                     places_board.save()
-                    print(pin)
+                    print(".", end="")
+            print()

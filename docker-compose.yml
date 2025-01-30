@@ -1,26 +1,24 @@
-version: "3.5"
 services:
-  pinterest_backend:
+  pinterest-backend:
     build: ./backend
-    image: pinterest_backend
     env_file: .envs/.local/.django
     restart: always
-    volumes:
-      - ./backend:/backend
+    # volumes:
+    #   - ./backend:/backend
 
-  pinterest_frontend:
-    image: node:14-alpine 
+  pinterest-frontend:
+    build: ./frontend
     env_file: .envs/.local/.next
-    volumes:
-      - ./frontend:/frontend
-    working_dir: /frontend
-    command: npm run dev
+    restart: always
+    # volumes:
+    #   - ./frontend:/frontend
+    # command: npm run dev
 
   caddy:
     image: caddy
     volumes:
       - ./Caddyfile:/etc/caddy/Caddyfile
-    ports: 
+    ports:
       - 80:80
       - 443:443
       - 2019:2019

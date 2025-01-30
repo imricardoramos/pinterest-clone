@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:22-alpine
 
 # Setting working directory. All the path will be relative to WORKDIR
 WORKDIR /frontend
@@ -14,4 +14,4 @@ COPY . .
 RUN npm run build
 
 # Running the app
-CMD [ "npm", "start"]
+CMD [ "npm", "run", "start"]
